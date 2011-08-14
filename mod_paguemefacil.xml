@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module"
+	method="upgrade"
+	version="1.6">
+	<name>MOD_PAGUEMEFACIL</name>
+	<author>Emerson Rocha Luiz</author>
+	<creationDate>2011-08-11</creationDate>
+	<copyright>Copyright (C) 2005 - 2011 Webdesign Assessoria em Tecnologia da Informacao.</copyright>
+	<license>GNU General Public License version 3</license>
+	<authorEmail>emerson@webdesign.eng.br</authorEmail>
+	<authorUrl>http://fititnt.org</authorUrl>
+	<version>1.0alpha1</version>
+	<description>MOD_PAGUEMEFACIL_XML_DESCRIPTION</description>
+	<files>
+		<filename module="mod_paguemefacil">mod_paguemefacil.php</filename>
+                <filename>helper.php</filename>
+		<filename>index.html</filename>
+		<folder>tmpl</folder>
+                <folder>css</folder>
+                <folder>languages</folder>
+	</files>
+	<languages folder="languages">
+		<language tag="en-GB">en-GB/en-GB.mod_paguemefacil.ini</language>
+		<language tag="en-GB">en-GB/en-GB.mod_paguemefacil.sys.ini</language>	
+	</languages>
+		
+	<config>
+            <fields name="params">
+                 <fieldset name="basic">
+                     <field 
+                            name="exibir_formulario_produto" 
+                            type="radio" 
+                            default="1" 
+                            label="MOD_PAGUEMEFACIL_EXIBIR_FORMULARIOPRODUTO_LABEL" 
+                            description="MOD_PAGUEMEFACIL_EXIBIR_FORMULARIOPRODUTO_DESC">
+                          <option value="1">JYES</option>
+                          <option value="0">JNO</option>
+                     </field>
+                  <field 
+                            name="exibir_formulario_comprador" 
+                            type="radio" 
+                            default="1" 
+                            label="MOD_PAGUEMEFACIL_EXIBIR_FORMULARIOCOMPRADOR_LABEL" 
+                            description="MOD_PAGUEMEFACIL_EXIBIR_FORMULARIOCOMPRADOR_DESC">
+                          <option value="1">JYES</option>
+                          <option value="0">JNO</option>
+                     </field>                          
+                 </fieldset>                  
+                 <fieldset name="PRODUTO">
+                    <field
+                            name="produto_nome"
+                            type="text"
+                            default="" 
+                            label="MOD_PAGUEMEFACIL_PROD_NOME"
+                            description="MOD_PAGUEMEFACIL_PROD_NOME">
+                    </field>
+                    <field
+                            name="produto_descricao"
+                            type="text"
+                            default="" 
+                            label="MOD_PAGUEMEFACIL_PROD_DESCRICAO"
+                            description="MOD_PAGUEMEFACIL_PROD_DESCRICAO">
+                    </field>
+                    <field
+                            name="produto_codigo"
+                            type="text"
+                            default="" 
+                            label="MOD_PAGUEMEFACIL_PROD_CODIGO"
+                            description="MOD_PAGUEMEFACIL_PROD_CODIGO">
+                    </field>
+                    <field
+                            name="produto_peso"
+                            type="text"
+                            default="" 
+                            label="MOD_PAGUEMEFACIL_PROD_PESO"
+                            description="MOD_PAGUEMEFACIL_PROD_PESO">
+                    </field>
+                    <field
+                            name="produto_quantidade"
+                            type="text"
+                            default="1" 
+                            label="MOD_PAGUEMEFACIL_PROD_QUANTIDADE"
+                            description="MOD_PAGUEMEFACIL_PROD_QUANTIDADE">
+                    </field>
+                    <field
+                            name="produto_precounitario"
+                            type="text"
+                            default="1" 
+                            label="MOD_PAGUEMEFACIL_PROD_PRECO_UNITARIO"
+                            description="MOD_PAGUEMEFACIL_PROD_PRECO_UNITARIO">
+                    </field>
+                    <!-- @fititnt: Duh! Esse campo nao deveria ir mesmo na administracao xD
+                    <field
+                            name="produto_precofinal"
+                            type="text"
+                            default="" 
+                            label="MOD_PAGUEMEFACIL_PROD_PRECO_FINAL"
+                            description="MOD_PAGUEMEFACIL_PROD_PRECO_FINAL">
+                    </field>
+                    -->
+                  </fieldset>
+
+                 <fieldset name="PD">
+                    <field 
+                            name="exibir_pd" 
+                            type="radio" 
+                            default="1" 
+                            label="MOD_PAGUEMEFACIL_EXIBIR_PD_LABEL" 
+                            description="MOD_PAGUEMEFACIL_EXIBIR_PD_DESC">
+                          <option value="1">JYES</option>
+                          <option value="0">JNO</option>
+                     </field>                          
+                  </fieldset>
+                  <fieldset name="PS">
+                    <field 
+                            name="exibir_ps" 
+                            type="radio" 
+                            default="1" 
+                            label="MOD_PAGUEMEFACIL_EXIBIR_PS_LABEL" 
+                            description="MOD_PAGUEMEFACIL_EXIBIR_PS_DESC">
+                          <option value="1">JYES</option>
+                          <option value="0">JNO</option>
+                     </field>                          
+                  </fieldset>
+                  <fieldset name="MP">
+                    <field 
+                            name="exibir_mp" 
+                            type="radio" 
+                            default="1" 
+                            label="MOD_PAGUEMEFACIL_EXIBIR_MP_LABEL" 
+                            description="MOD_PAGUEMEFACIL_EXIBIR_MP_DESC">
+                          <option value="1">JYES</option>
+                          <option value="0">JNO</option>
+                     </field>                          
+                  </fieldset>
+                  <fieldset name="MP">
+                    <field 
+                            name="exibir_mp" 
+                            type="radio" 
+                            default="1" 
+                            label="MOD_PAGUEMEFACIL_EXIBIR_MP_LABEL" 
+                            description="MOD_PAGUEMEFACIL_EXIBIR_MP_DESC">
+                          <option value="1">JYES</option>
+                          <option value="0">JNO</option>
+                     </field>                          
+                  </fieldset>
+                  <fieldset name="IPAG">
+                    <field 
+                            name="exibir_ipag" 
+                            type="radio" 
+                            default="1" 
+                            label="MOD_PAGUEMEFACIL_EXIBIR_IPAG_LABEL" 
+                            description="MOD_PAGUEMEFACIL_EXIBIR_IPAG_DESC">
+                          <option value="1">JYES</option>
+                          <option value="0">JNO</option>
+                     </field>                          
+                  </fieldset>
+                  <fieldset name="F2B">
+                    <field 
+                            name="exibir_f2b" 
+                            type="radio" 
+                            default="1" 
+                            label="MOD_PAGUEMEFACIL_EXIBIR_F2B_LABEL" 
+                            description="MOD_PAGUEMEFACIL_EXIBIR_F2B_DESC">
+                          <option value="1">JYES</option>
+                          <option value="0">JNO</option>
+                     </field> 
+                  </fieldset>
+                  <fieldset name="MOIP">
+                    <field 
+                            name="exibir_moip" 
+                            type="radio" 
+                            default="1" 
+                            label="MOD_PAGUEMEFACIL_EXIBIR_MOIP_LABEL" 
+                            description="MOD_PAGUEMEFACIL_EXIBIR_MOIP_DESC">
+                          <option value="1">JYES</option>
+                          <option value="0">JNO</option>
+                     </field>  
+                  </fieldset>
+                  <fieldset name="PP">
+                    <field 
+                            name="exibir_pp" 
+                            type="radio" 
+                            default="1" 
+                            label="MOD_PAGUEMEFACIL_EXIBIR_PP_LABEL" 
+                            description="MOD_PAGUEMEFACIL_EXIBIR_PP_DESC">
+                          <option value="1">JYES</option>
+                          <option value="0">JNO</option>
+                     </field>  
+                  </fieldset>
+              </fields>
+	</config>
+        <!--
+        <scriptfile>install.php</scriptfile>
+        -->
+</extension>

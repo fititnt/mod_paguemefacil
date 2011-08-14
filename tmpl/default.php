@@ -7,57 +7,161 @@
  */
 // no direct access
 defined('_JEXEC') or die;
-?>
-<?php echo $modbefore; ?>
-<fieldset id="paguemefacil">
-    <label for="_name"><?php echo JTEXT::_('MOD_PAGUEMEFACIL_NOME'); ?></label>
-    <input type="text" name="name" value="<?php echo $pmf->comprador_nome; ?>" /> 
 
-    <label for="email"><?php echo JTEXT::_('MOD_PAGUEMEFACIL_EMAIL'); ?></label> 
-    <input type="email" name="email" value="<?php echo $pmf->comprador_email; ?>"  />
+
+?>
+<style>
+    #paguemefacil_comprador input{
+        display: block;
+        margin-bottom: 10px;
+    }
+    #paguemefacil_produto<?php echo $pmf->sufixo; ?> span[class^=pmf_prod_v]{
+        display: block;
+        margin-bottom: 10px;
+    }
+</style>
+<script>
+    
+    function obtemEnderecoDeCep( cep ){
+        //chamada remota
+        if ( encontrado )
+        {    
+            documento.pmf_endereco<?php echo $pmf->sufixo; ?>.value = '';
+            documento.pmf_endereco<?php echo $pmf->sufixo; ?>.value = '';
+            documento.pmf_numero<?php echo $pmf->sufixo; ?>.value = '';
+            documento.pmf_cidade<?php echo $pmf->sufixo; ?>.value = '';
+            documento.pmf_estado<?php echo $pmf->sufixo; ?>.value = '';
+        } else {
+            documento.pmf_estado<?php echo $pmf->sufixo; ?>.style.visibility = show;
+        }    
+    }
+    function envia(){
+    
+    }
+    
+</script>
+    
+<?php echo $modbefore; 
+if( $params->get('exibir_formulario_produto', 1 ) ):
+?>
+<fieldset id="paguemefacil_produto<?php echo $pmf->sufixo; ?>">
+    <span class="pmf_prod_n_nome">
+        <?php echo JTEXT::_('MOD_PAGUEMEFACIL_PROD_NOME'); ?>:
+    </span>
+    <span class="pmf_prod_v_nome">
+        <?php echo $pmf->produto_nome; ?>
+    </span>
+    <span class="pmf_prod_n_descricao">
+        <?php echo JTEXT::_('MOD_PAGUEMEFACIL_PROD_DESCRICAO'); ?>:
+    </span>
+    <span class="pmf_prod_v_descricao">
+        <?php echo $pmf->produto_descricao; ?>
+    </span>
+    <span class="pmf_prod_n_codigo">
+        <?php echo JTEXT::_('MOD_PAGUEMEFACIL_PROD_CODIGO'); ?>:
+    </span>
+    <span class="pmf_prod_v_codigo">
+        <?php echo $pmf->produto_codigo; ?>
+    </span>
+    <span class="pmf_prod_n_peso">
+        <?php echo JTEXT::_('MOD_PAGUEMEFACIL_PROD_PESO'); ?>:
+    </span>
+    <span class="pmf_prod_v_peso">
+        <?php echo $pmf->produto_peso; ?>
+    </span>
+    <span class="pmf_prod_n_quantidade">
+        <?php echo JTEXT::_('MOD_PAGUEMEFACIL_PROD_QUANTIDADE'); ?>:
+    </span>
+    <span class="pmf_prod_v_quantidade">
+        <?php echo $pmf->produto_quantidade; ?>
+    </span>
+    <span class="pmf_prod_n_precounitario">
+        <?php echo JTEXT::_('MOD_PAGUEMEFACIL_PROD_PRECO_UNITARIO'); ?>:
+    </span>
+    <span class="pmf_prod_v_precounitario">
+        <?php echo $pmf->produto_precounitario; ?>
+    </span>
+    <span class="pmf_prod_n_precofinal">
+        <?php echo JTEXT::_('MOD_PAGUEMEFACIL_PROD_PRECO_FINAL'); ?>:
+    </span>
+    <span class="pmf_prod_v_precofinal">
+        <?php echo $pmf->produto_precofinal; ?>
+    </span>
+    
 </fieldset>
 <?php
+endif;
+if( $params->get('exibir_formulario_comprador', 1 ) ):
+?>
+<fieldset id="paguemefacil_comprador<?php echo $pmf->sufixo; ?>">
+    <label for="_name"><?php echo JTEXT::_('MOD_PAGUEMEFACIL_NOME'); ?></label>
+    <input type="text" name="name" id="pmf_nome<?php echo $pmf->sufixo; ?>" value="<?php echo $pmf->comprador_nome; ?>" /> 
+
+    <label for="email"><?php echo JTEXT::_('MOD_PAGUEMEFACIL_EMAIL'); ?></label> 
+    <input type="text" name="email" id="pmf_email<?php echo $pmf->sufixo; ?>" value="<?php echo $pmf->comprador_email; ?>"  />
+    
+    <label for="cep"><?php echo JTEXT::_('MOD_PAGUEMEFACIL_CEP'); ?></label> 
+    <input type="text" name="cep" id="pmf_cep<?php echo $pmf->sufixo; ?>"value="<?php echo $pmf->comprador_cep; ?>"  />
+    
+    <label for="endecero"><?php echo JTEXT::_('MOD_PAGUEMEFACIL_ENDERECO'); ?></label> 
+    <input type="text" name="endecero" id="pmf_endereco<?php echo $pmf->sufixo; ?>" value="<?php echo $pmf->comprador_endereco; ?>"  />
+    
+    <label for="numero"><?php echo JTEXT::_('MOD_PAGUEMEFACIL_NUMERO'); ?></label> 
+    <input type="text" name="numero" id="pmf_numero<?php echo $pmf->sufixo; ?>"value="<?php echo $pmf->comprador_numero; ?>"  />
+    
+    <label for="cidade"><?php echo JTEXT::_('MOD_PAGUEMEFACIL_CIDADE'); ?></label> 
+    <input type="text" name="cidade" id="pmf_cidade<?php echo $pmf->sufixo; ?>"value="<?php echo $pmf->comprador_cidade; ?>"  />
+    
+    <label for="estado"><?php echo JTEXT::_('MOD_PAGUEMEFACIL_ESTADO'); ?></label> 
+    <input type="text" name="estado" id="pmf_estado<?php echo $pmf->sufixo; ?>" value="<?php echo $pmf->comprador_estado; ?>"  />
+</fieldset>
+<?php
+endif;
 //https://pagseguro.uol.com.br/desenvolvedor/botoes_de_pagamento.jhtml
+if( $params->get('exibir_ps', 1 ) ):
 ?>
 <form target="pagseguro" action="https://pagseguro.uol.com.br/v2/checkout/cart.html?action=add" method="post" class="paguemefacil_pagseguro">
-    <input type="hidden" name="receiverEmail" value="<?php echo $pmf->ps_email; ?>" />
+    <input type="hidden" name="receiverEmail" value="<?php echo $pmf->mp_ps_email; ?>" />
     <input type="hidden" name="currency" value="BRL" />
     <input type="hidden" name="itemId" value="<?php echo $pmf->produto_codigo; ?>" />
     <input type="hidden" name="itemDescription" value="<?php echo $pmf->produto_nome; ?>" />
-    <input type="hidden" name="itemQuantity" value="" />
+    <input type="hidden" name="itemQuantity" value="<?php echo $pmf->produto_quantidade; ?>" />
     <input type="hidden" name="itemAmount" value="" />
-    <input type="hidden" name="itemWeight" value="" />
+    <input type="hidden" name="itemWeight" value="<?php echo $pmf->produto_peso; ?>" />
     <input type="hidden" name="itemShippingCost" value="" />
-    <input type="submit" value="<?php echo JTEXT::_('MOD_PAGUEMEFACIL_ENVIAR_PAGSEGURO'); ?>" name="submit" class="submit" />
+    <input type="submit" value="<?php echo JTEXT::_('MOD_PAGUEMEFACIL_ENVIAR_PS'); ?>" name="submit" class="submit" />
 </form>
 <?php
+endif;
 //https://www.pagamentodigital.com.br/site/Integracao/Carrinho/
+if( $params->get('exibir_pd', 1 ) ):
 ?>
 <form action="https://www.pagamentodigital.com.br/checkout/car/" method="post" target="carrinho" class="paguemefacil_pagamentodigital">
-    <input name="email_loja" type="hidden" value="<?php echo $pmf->pd_email; ?>">
+    <input name="email_loja" type="hidden" value="<?php echo $pmf->mp_pd_email; ?>">
     <input name="acao" type="hidden" value="add">
     <input name="cod_prod" type="hidden" value="<?php echo $pmf->produto_codigo; ?>">
     <input name="nome_prod" type="hidden" value="<?php echo $pmf->produto_nome; ?>">
-    <input name="valor_prod" type="hidden" value="" >
-    <input name="peso_prod" type="hidden" value="">
-    <input name="quant_prod" type="hidden" value="">
+    <input name="valor_prod" type="hidden" value="<?php echo $pmf->produto_precofinal; ?>" >
+    <input name="peso_prod" type="hidden" value="<?php echo $pmf->produto_peso; ?>">
+    <input name="quant_prod" type="hidden" value="<?php echo $pmf->produto_quantidade; ?>">
     <input type="hidden" name="nome" value="<?php echo $pmf->comprador_nome; ?>"/>
     <input type="hidden" name="email" value="<?php echo $pmf->comprador_email; ?>"/>
-    <input type="submit" value="<?php echo JTEXT::_('MOD_PAGUEMEFACIL_ENVIAR_PAGAMENTODIGITAL'); ?>" name="submit" class="submit" />
+    <input type="submit" value="<?php echo JTEXT::_('MOD_PAGUEMEFACIL_ENVIAR_PD'); ?>" name="submit" class="submit" />
 </form>
-
 <?php
+endif;
 /* 
  * Mercado Pago
  * https://www.mercadopago.com/mlb/buttonConfigNew?step=fourthStep&ck=78572.38333537398
  */
+if( $params->get('exibir_mp', 1 ) ):
 ?>
-<form action="https://www.mercadopago.com/mlb/buybutton" method="post"  class="paguemefacil_pagamentodigital">
-    <input type="submit" value="<?php echo JTEXT::_('MOD_PAGUEMEFACIL_ENVIAR_MERCADOPAGO'); ?>" name="submit" class="submit" />
+<form action="https://www.mercadopago.com/mlb/buybutton" method="post" class="paguemefacil_pagamentodigital">
+    <input type="submit" value="<?php echo JTEXT::_('MOD_PAGUEMEFACIL_ENVIAR_MP'); ?>" name="submit" class="submit" />
     <input type="hidden" name="acc_id" value="12967111">
     <input type="hidden" name="url_cancel" value="http://http:/http://fititnt.org">
-    <input type="hidden" name="item_id" value="codigo">
-    <input type="hidden" name="name" value="nome">
+    <input type="hidden" name="item_id" value="<?php echo $pmf->produto_codigo; ?>">
+    <input type="hidden" name="name" value="<?php echo $pmf->comprador_nome; ?>">
     <input type="hidden" name="currency" value="REA">
     <input type="hidden" name="price" value="1.0">
     <input type="hidden" name="url_process" value="">
@@ -89,13 +193,15 @@ defined('_JEXEC') or die;
     <input type="hidden" name="ship_notificacion" value="">
 </form>
 <?php
+endif;
 /* 
  * iPagare
  * http://documentacao.ipagare.com.br/inicio/gratis/b-integracao-2/2-integracao-html/2-1-exemplo
  */
+if( $params->get('exibir_ipag', 1 ) ):
 ?>
-<form action="https://ww2.ipagare.com.br/service/process.do" method="POST">
-    <input type="submit" value="<?php echo JTEXT::_('MOD_PAGUEMEFACIL_ENVIAR_IPAGARE'); ?>" name="submit" class="submit" />
+<form action="https://ww2.ipagare.com.br/service/process.do" method="POST" class="paguemefacil_iparare">
+    <input type="submit" value="<?php echo JTEXT::_('MOD_PAGUEMEFACIL_ENVIAR_IPAG'); ?>" name="submit" class="submit" />
     <input type="hidden" name="estabelecimento" value="estabelecimento">
     <input type="hidden" name="acao" value="acao">
     <input type="hidden" name="valor_total" value="valor_total">
@@ -104,13 +210,16 @@ defined('_JEXEC') or die;
 </form>
 
 <?php
+endif;
 /* 
  * F2b
  * http://www.f2b.com.br/pt_BR/f2b/billing/web.jsp
  */
+if( $params->get('exibir_f2b', 1 ) ):
 ?>
 <!--
 <FORM method="POST" action="http://www.f2b.com.br/BillingWeb" target="_BLANK">
+    <input type="submit" value="<?php echo JTEXT::_('MOD_PAGUEMEFACIL_ENVIAR_F2B'); ?>" name="submit" class="submit" />
       <TABLE>
         <TR><TD>conta</TD><TD><INPUT type="text" name="conta"></TD></TR>
 
@@ -186,9 +295,51 @@ defined('_JEXEC') or die;
     </FORM>
 -->
 <?php
-//Moip nao sei se vou liberar
+endif;
+// Moip
+//https://www.moip.com.br/AdmSimplePaymentButton.do
+if( $params->get('exibir_moip', 1 ) ):
 ?>
+<form method='post' action='https://www.moip.com.br/PagamentoSimples.do' class="paguemefacil_moip">
+    <input type="submit" value="<?php echo JTEXT::_('MOD_PAGUEMEFACIL_ENVIAR_MOIP'); ?>" name="submit" class="submit" />
+    <input type='hidden' name='id_carteira' value='fititnt'/>
+    <input type='hidden' name='valor' value='12300'/>
+    <input type='hidden' name='nome' value='mod_paguemefacil'/>
+    <input type='hidden' name='descricao' value='descricao'/>
+    <input type='hidden' name='id_transacao' value='meuid'/>
+    <input type='hidden' name='tempo_entrega' value='123'/>
+    <input type='hidden' name='frete' value='1'/>
+    <input type='hidden' name='peso_compra' value='12000'/>
+</form>
+
 <?php
-//Paypal latter
+endif;
+/*
+ * Paypal
+ * https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_html_formbasics
+ */
+if( $params->get('exibir_pp', 1 ) ):
 ?>
-<?php echo $modafter; ?>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="paguemefacil_paypal">
+ <input type="submit" value="<?php echo JTEXT::_('MOD_PAGUEMEFACIL_ENVIAR_PP'); ?>" name="submit" class="submit" />
+ <input type="hidden" name="cmd" value="_cart">
+ <input type="hidden" name="business" value="seller@designerfotos.com">
+ <input type="hidden" name="item_name" value="hat">
+ <input type="hidden" name="item_number" value="123">
+ <input type="hidden" name="amount" value="15.00">
+ <input type="hidden" name="first_name" value="John"> 
+ <input type="hidden" name="last_name" value="Doe">
+ <input type="hidden" name="address1" value="9 Elm Street">
+ <input type="hidden" name="address2" value="Apt 5">
+ <input type="hidden" name="city" value="Berwyn">
+ <input type="hidden" name="state" value="PA">
+ <input type="hidden" name="zip" value="19312">
+ <input type="hidden" name="night_phone_a" value="610"> 
+ <input type="hidden" name="night_phone_b" value="555"> 
+ <input type="hidden" name="night_phone_c" value="1234">
+ <input type="hidden" name="email" value="jdoe@zyzzyu.com">  
+</form> 
+<?php 
+endif;
+echo $modafter; 
+?>
