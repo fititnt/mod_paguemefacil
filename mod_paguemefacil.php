@@ -9,29 +9,31 @@
 defined('_JEXEC') or die;
 
 // Include helper.php once
-require_once dirname(__FILE__).'/helper.php';
+require_once dirname(__FILE__).'/helpers/DynamicCreateFile.php'; //Library to manipulate files
+require_once dirname(__FILE__).'/helpers/paguemefacil.php'; //Own Library
 
 $modbefore = htmlspecialchars_decode(($params->get('modbefore','')));
 $modafter = htmlspecialchars_decode(($params->get('modafter','')));
 
 $doc = &JFactory::getDocument();
-
-if($params->get('css_path', NULL) != '-1')
+$doc->addStyleSheet( 'modules/mod_paguemefacil/css/css.php' );
+$doc->addScript( 'modules/mod_paguemefacil/js/js.php' );
+if($params->get('include_css', NULL) != '-1')
 {    
-    if( strlen( $params->get('css_path',NULL) ) < 3)
+    if( strlen( $params->get('include_css',NULL) ) < 3)
     {
-        $doc->addStyleSheet( $params->get('css_path',NULL) );
+        $doc->addStyleSheet( $params->get('include_css',NULL) );
     } else {
-        $doc->addStyleSheet( 'modules/mod_paguemefacil/css/paguemefacil.css' );
+        $doc->addStyleSheet( 'modules/mod_paguemefacil/css/jdcf_css.php' );
     }
 }
-if($params->get('css_js', NULL) != '-1')
+if($params->get('include_js', NULL) != '-1')
 {    
-    if( strlen( $params->get('css_js',NULL) ) < 3)
+    if( strlen( $params->get('include_js',NULL) ) > 3)
     {
-        $doc->addScript( $params->get('css_js',NULL) );
+        $doc->addScript( $params->get('include_js',NULL) );
     } else {
-        $doc->addScript( 'modules/mod_paguemefacil/js/paguemefacil.js' );
+        $doc->addScript( 'modules/mod_paguemefacil/js/jdcf_js.php' );
     }
 }
 

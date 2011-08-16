@@ -9,38 +9,7 @@
 defined('_JEXEC') or die;
 
 
-?>
-<style>
-    #paguemefacil_comprador input{
-        display: block;
-        margin-bottom: 10px;
-    }
-    #paguemefacil_produto<?php echo $pmf->sufixo; ?> span[class^=pmf_prod_v]{
-        display: block;
-        margin-bottom: 10px;
-    }
-</style>
-<script>
-    
-    function obtemEnderecoDeCep( cep ){
-        //chamada remota
-        if ( encontrado )
-        {    
-            documento.pmf_endereco<?php echo $pmf->sufixo; ?>.value = '';
-            documento.pmf_endereco<?php echo $pmf->sufixo; ?>.value = '';
-            documento.pmf_numero<?php echo $pmf->sufixo; ?>.value = '';
-            documento.pmf_cidade<?php echo $pmf->sufixo; ?>.value = '';
-            documento.pmf_estado<?php echo $pmf->sufixo; ?>.value = '';
-        } else {
-            documento.pmf_estado<?php echo $pmf->sufixo; ?>.style.visibility = show;
-        }    
-    }
-    function envia(){
-    
-    }
-    
-</script>
-    
+?>    
 <?php echo $modbefore; 
 if( $params->get('exibir_formulario_produto', 1 ) ):
 ?>
